@@ -1,6 +1,7 @@
 package org.generation.italy;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -26,24 +27,31 @@ public class CalcolatriceTest {
 	@Test
 	@DisplayName("Test sottrazione")
 	void testSottrazione() {
-		float subtract= calcolatrice.subctract(10, 5);
+		float subtract= calcolatrice.subctract(4.6f, 9.3f);
 		
-		assertEquals(5, subtract, "Sottrazione non conforme");
+		assertEquals(-4.7000003f, subtract, "Sottrazione non conforme");
 	}
 	
 	@Test
 	@DisplayName("Test divisione")
-	void testDivisione() {
+	void testDivisione() throws Exception {
 		float divide= calcolatrice.divide(15, 5);
 		
 		assertEquals(3, divide, "Divisione non conforme");
 	}
 	
 	@Test
+	@DisplayName("Test divisione per 0")
+	void testDivisioneEccezione(){
+		
+		assertThrows(Exception.class, () -> calcolatrice.divide(90, 0));
+	}
+	
+	@Test
 	@DisplayName("Test Moltiplicazione")
 	void testMultiply() {
-		float multiply = calcolatrice.multiply(7, 8);
+		float multiply = calcolatrice.multiply(4.57f, 6.37f);
 		
-		assertEquals(56, multiply, "Moltiplicazione non conforme");
+		assertEquals(29.1109f, multiply, "Moltiplicazione non conforme");
 	}
 }
